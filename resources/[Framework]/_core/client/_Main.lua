@@ -38,7 +38,7 @@ Citizen.CreateThread(function()
 		if playerPed and playerPed ~= -1 and cAPI.playerSpawned then
         	TriggerServerEvent('updatePosOnServerForPlayer', { table.unpack(GetEntityCoords(playerPed)) })
         end
-        Citizen.Wait(5000)
+        Citizen.Wait(TimeToSaveCharacter*1000)
     end
 end)
 

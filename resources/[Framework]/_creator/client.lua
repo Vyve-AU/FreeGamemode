@@ -1,5 +1,5 @@
-local Tunnel = module('_core', 'libs/Tunnel')
 local Proxy = module('_core', 'libs/Proxy')
+local Tunnel = module('_core', 'libs/Tunnel')
 
 cAPI = Proxy.getInterface('cAPI')
 API = Tunnel.getInterface('API')
@@ -51,73 +51,73 @@ cameraUsing = {
         z=0.6,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.FACE_MARKS,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu2.FACE_MARKS,
         x=0.0,
         y=-0.4,
         z=0.6,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.HAIR,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu2.HAIR,
         x=0.0,
         y=-0.4,
         z=0.7,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.BEARDS,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu2.BEARDS,
         x=0.0,
         y=-0.4,
         z=0.6,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.MAKEUP,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu2.MAKEUP,
         x=0.0,
         y=-0.4,
         z=0.6,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.OLD_AGE,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu2.OLD_AGE,
         x=0.0,
         y=-0.4,
         z=0.6,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.TORSO,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu2.TORSO,
         x=0.0,
         y=-1.6,
         z=0.3,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.BODY,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu2.BODY,
         x=0.0,
         y=-0.4,
         z=0.3,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.JACKET,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu3.JACKET,
         x=0.0,
         y=-1.0,
         z=0.3,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.SHIRT,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu3.SHIRT,
         x=0.0,
         y=-1.0,
         z=0.3,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.LEGS,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu3.LEGS,
         x=0.0,
         y=-0.8,
         z=-0.4,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.ACESSORY,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu3.ACESSORY,
         x=0.0,
         y=-1.0,
         z=0.3,
     },
     {
-        name = cAPI.getUILanguage(GetCurrentResourceName()).menu1.FOOTS,
+        name = cAPI.getUILanguage(GetCurrentResourceName()).menu3.FOOTS,
         x=0.0,
         y=-0.8,
         z=-0.7,
@@ -252,20 +252,30 @@ RegisterNUICallback('FinishedCreator', function(data)
     local ped = PlayerPedId()
     sendAll = {
         model = GetEntityModel(ped),
-        headBlend = GetPedHeadBlendData(),
-        overlayHead = GetHeadOverlayData(),
-        headStruct = GetHeadStructureData()
+        headBlend = cAPI.GetPedHeadBlendData(),
+        overlayHead = cAPI.GetHeadOverlayData(),
+        headStruct = cAPI.GetHeadStructureData(),
+        getHair = cAPI.GetPedHair()
     }
     clothes = {
-        drawables = GetDrawables(),
-        getHair = GetPedHair(),
-        drawTextures = GetDrawTextures()
+        drawables = cAPI.GetDrawables(),
+        drawTextures = cAPI.GetDrawTextures()
     }
     TriggerServerEvent('CKF_creator:saveCreator', data.charName, data.age, sendAll, clothes)
     ClearPedTasksImmediately(PlayerPedId())
     closeCreator()
     cAPI.CameraWithSpawnEffect(spawnAfterCreation)
 end)
+
+RegisterNUICallback('rotate', function(data, cb)
+    if (data["key"] == "left") then
+        rotation(20)
+    else
+        rotation(-20)
+    end
+    cb('ok') 
+end)
+
 
 -------------------
 -----FUNCTIONS-----
@@ -346,15 +356,6 @@ function rotation(dir)
     SetEntityHeading(PlayerPedId(), pedRot % 360)
 end
 
-RegisterNUICallback('rotate', function(data, cb)
-    if (data["key"] == "left") then
-        rotation(20)
-    else
-        rotation(-20)
-    end
-    cb('ok') 
-end)
-
 function defaultClothes(gender)
     Citizen.CreateThread(function()
         if gender == "mp_m_freemode_01" then
@@ -398,85 +399,4 @@ function loadAnimDict(dict)
 		RequestAnimDict(dict)
 		Citizen.Wait(5)
 	end
-end
-
-function GetPedHeadBlendData()
-    local player = PlayerPedId()
-    local blob = string.rep("\0\0\0\0\0\0\0\0", 6 + 3 + 1) -- Generate sufficient struct memory.
-    if not Citizen.InvokeNative(0x2746BD9D88C5C5D0, player, blob, true) then -- Attempt to write into memory blob.
-        return nil
-    end
-
-    return {
-        s1 = string.unpack("<i4", blob, 1),
-        s2 = string.unpack("<i4", blob, 9),
-        s3 = string.unpack("<i4", blob, 17),
-        s4 = string.unpack("<i4", blob, 25),
-        s5 = string.unpack("<i4", blob, 33),
-        s6 = string.unpack("<i4", blob, 41),
-        s7 = string.unpack("<f", blob, 49),
-        s8 = string.unpack("<f", blob, 57),
-        s9 = string.unpack("<f", blob, 65),
-        s10 = string.unpack("b", blob, 73) ~= 0,
-    }
-end
-
-function GetHeadOverlayData()
-    local player = PlayerPedId()
-    local headData = {}
-    for i = 1, #cAPI.getHeadOverlays() do
-        local retval, overlayValue, colourType, firstColour, secondColour, overlayOpacity = GetPedHeadOverlayData(player, i-1)
-        if retval then
-            headData[i] = {}
-            headData[i].name = cAPI.getHeadOverlays()[i]
-            headData[i].ov = overlayValue --
-            headData[i].fc = firstColour -- 
-            headData[i].sc = secondColour --
-            headData[i].oo = string.format("%.2f", overlayOpacity) --
-        end
-    end
-    return headData
-end
-
-function GetPedHair()
-    local player = PlayerPedId()
-    local hairColor = {}
-    hairColor[1] = GetPedHairColor(player)
-    hairColor[2] = GetPedHairHighlightColor(player)
-    return hairColor
-end
-
-function GetHeadStructureData()
-    local player = PlayerPedId()
-    local structure = {}
-    for i = 1, #cAPI.getFaceFeatures() do
-        structure[cAPI.getFaceFeatures()[i]] = GetPedFaceFeature(player, i-1)
-    end
-    return structure
-end
-
-function GetDrawables()
-    local player = PlayerPedId()
-    drawables = {}
-    local model = GetEntityModel(PlayerPedId())
-    local mpPed = false
-    if (model == `mp_f_freemode_01` or model == `mp_m_freemode_01`) then
-        mpPed = true
-    end
-    for i = 0, #cAPI.getDrawableNames()-1 do
-        if mpPed and cAPI.getDrawableNames()[i+1] == "undershirts" and GetPedDrawableVariation(player, i) == -1 then
-            SetPedComponentVariation(player, i, 15, 0, 2)
-        end
-        drawables[i] = {cAPI.getDrawableNames()[i+1], GetPedDrawableVariation(player, i)}
-    end
-    return drawables
-end
-
-function GetDrawTextures()
-    local player = PlayerPedId()
-    textures = {}
-    for i = 0, #cAPI.getDrawableNames()-1 do
-        table.insert(textures, {cAPI.getDrawableNames()[i+1], GetPedTextureVariation(player, i)})
-    end
-    return textures
 end

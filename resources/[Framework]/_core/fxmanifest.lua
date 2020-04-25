@@ -2,17 +2,6 @@ fx_version 'adamant'
 game 'gta5'
 rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
 
-files {
-	'libs/utils.lua',
-	'libs/Tunnel.lua',
-	'libs/Proxy.lua',
-	'libs/Tools.lua',
-	'html/*',
-	'html/img/*',
-	'html/fonts/*',
-	"loading/*",
-}
-
 client_scripts {
 	'libs/utils.lua',
 	---------------------
@@ -21,6 +10,7 @@ client_scripts {
 	'config/Garages.lua',
 	'config/Weapons.lua',
 	'config/Language.lua',
+	'config/CKF.lua',
 	---------------------
 	'client/_Main.lua',
 	---------------------
@@ -62,6 +52,18 @@ server_scripts {
 	'server/manager/ChestManager.lua',
 	'server/manager/NeedsManager.lua'
 }
+
+files {
+	'libs/utils.lua',
+	'libs/Tunnel.lua',
+	'libs/Proxy.lua',
+	'libs/Tools.lua',
+	'html/*',
+	'html/img/*',
+	'html/fonts/*',
+	"loading/*",
+}
+
 
 loadscreen "loading/index.html"
 

@@ -192,13 +192,15 @@ RegisterCommand(
     function(source, args, rawCommand)
         local User = API.getUserFromSource(source)
         local Character = User:getCharacter()
-
-        if #args < 2 and not tonumber(args[2]) then
-            return
-        end
-
-        if Character:hasGroupOrInheritance("admin") then
-            Character:getInventory():addItem(args[1], tonumber(args[2]))
+        if ItemList[args[1]] then
+            if #args < 2 and not tonumber(args[2]) then
+                return
+            end
+            if Character:hasGroupOrInheritance("admin") then
+                Character:getInventory():addItem(args[1], tonumber(args[2]))
+            end
+        else
+            User:notify(" This item does not exists in ItemList. ")
         end
     end
 )

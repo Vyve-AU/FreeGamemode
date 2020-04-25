@@ -64,7 +64,6 @@ end
 function cAPI.setClothes(hash)
 	local decoded = json.decode(hash)
 	cAPI.SetClothing(decoded.drawables, decoded.drawTextures)
-	cAPI.SetHairColor(decoded.getHair)
 	return true
 end
 
@@ -73,6 +72,7 @@ function cAPI.setSkin(hash)
 	cAPI.SetPedHeadBlend(decoded.headBlend)
 	cAPI.SetHeadOverlayData(decoded.overlayHead)
 	cAPI.SetHeadStructure(decoded.headStruct)
+	cAPI.SetHairColor(decoded.getHair)
 	cAPI.EndFade(500)
 	return true
 end
@@ -178,9 +178,9 @@ function cAPI.getWeapons()
 end
 
 function cAPI.replaceWeapons(weapons)
-	local old_weapons = cAPI.getWeapons()
+	local old_weapon = cAPI.getWeapons()
 	cAPI.giveWeapons(weapons, true)
-	return old_weapons
+	return old_weapon
 end
 
 function cAPI.giveWeapon(weapon, ammo, clear_before)
@@ -193,15 +193,17 @@ function cAPI.giveWeapon(weapon, ammo, clear_before)
 end
 
 function cAPI.giveWeapons(weapons, clear_before)
-	local ped = PlayerPedId()
-	if clear_before then
-		RemoveAllPedWeapons(ped, true, true)
-	end
-	for weapon, ammo in pairs(weapons) do
-		local hash = GetHashKey(weapon)
-        GiveWeaponToPed(PlayerPedId(), hash,ammo or 0,false,true)
-        SetPedAmmoByType(PlayerPedId(), GetPedAmmoTypeFromWeapon(PlayerPedId(), hash), ammo)
-	end
+	Citizen.CreateThread(
+		function()
+			local ped = PlayerPedId()
+			if clear_before then RemoveAllPedWeapons(ped, true, true) end
+			for weapon, ammo in pairs(weapons) do
+				local hash = GetHashKey(weapon)
+				Citizen.InvokeNative(0xBF0FD6E56C964FCB, ped, hash, ammo or 0, false, false)
+				Citizen.InvokeNative(0x5FD1E1F011E76D7E, ped, GetPedAmmoTypeFromWeapon(ped, hash), ammo )
+			end
+		end
+	)
 end
 
 function cAPI.setArmour(amount)

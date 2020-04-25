@@ -120,7 +120,7 @@ ItemList = {
         type = 'food',
         name = 'Pão',
         weight = 0.1,
-        hungerVar = 1.0
+        hungerVar = 1.01
     },
     ['consumable_apple'] = {
         type = 'food',

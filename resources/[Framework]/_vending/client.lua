@@ -1,10 +1,11 @@
 local Proxy = module('_core', 'libs/Proxy')
 local Tunnel = module('_core', 'libs/Tunnel')
 
-API = Proxy.getInterface("API")
-cAPI = Tunnel.getInterface("cAPI")
+cAPI = Proxy.getInterface('cAPI')
+API = Tunnel.getInterface('API')
 
 local dictionary = "mini@sprunk"
+local thirst = -2.5
 local boneIndex
 local TempCan = nil
 local CanModel
@@ -48,9 +49,11 @@ Citizen.CreateThread(function()
             elseif GetEntityModel(machine) == GetHashKey("prop_vend_soda_02") then
                 CanModel = GetHashKey("prop_ld_can_01b") 
             end
-            ShowMessage("VENDHLP",-1);
+            ShowMessage("VENDHLP", 2000);
             if IsControlJustPressed(1,38) then
-                _StartMachine(machine)
+                if API.removeMoney(GetPlayerServerId(PlayerId()), 1) then
+                    _StartMachine(machine)
+                end
             end
         end
         if method == 2 then
@@ -94,6 +97,7 @@ Citizen.CreateThread(function()
                     ReleaseAmbientAudioBank()
                     TempCan = nil;
                     method = 0;
+                    API._varyThirst(GetPlayerServerId(PlayerId()), thirst)
                 end
             end
         end

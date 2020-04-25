@@ -47,10 +47,20 @@ function API.useItem(source, id, amount)
         return true
     elseif ItemData:getType() == "food" then
         local hungerVar = ItemData:getHungerVar()
-        API.varyHunger(source, hungerVar)
+        if API.varyHunger(source, -hungerVar) then
+            return true
+        end
+        return false
     elseif ItemData:getType() == "beverage" then
         local thirstVar = ItemData:getThirstVar()
-        API.varyThirst(source, thirstVar)
+        if API.varyThirst(source, -thirstVar) then 
+            return true
+        end
+        return false
+    elseif ItemData:getType() == "normal" then
+        if ItemData:getId() == "generic_money" then
+            -- later make a payment system with using item Oo: this is new
+        end
     end 
 end
 

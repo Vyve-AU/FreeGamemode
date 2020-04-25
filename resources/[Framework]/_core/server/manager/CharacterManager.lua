@@ -6,6 +6,12 @@ function API.getNameById(id)
     return "?"
 end
 
+function API.removeMoney(source, value) -- test
+    local User = API.getUserFromSource(source)
+    local Character = User:getCharacter()
+    return Character:removeMoney(source, parseInt(value))
+end
+
 --------------------------
 -- Save Server Position --
 --------------------------

@@ -5,6 +5,7 @@ function API.User(source, id, ipAddress)
     self.id = id
     self.ipAddress = ipAddress or '0.0.0.0'
     self.posseId = nil
+    self.weapons = nil
 
     self.save = function()
     end
@@ -77,7 +78,7 @@ function API.User(source, id, ipAddress)
             
             self.Character = API.Character(id, charRow[1].characterName, charRow[1].level, charRow[1].xp, json.decode(charRow[1].groups), Inventory)
             local weapons = json.decode(charRow[1].weapons) or {}
-            cAPI.replaceWeapons(self:getSource(), weapons)
+            self.weapons = weapons
             local posse = API.getPosse(tonumber(json.decode(charRow[1].charTable).posse))            
             if posse ~= nil then
                 self.posseId = posse:getId()
@@ -99,6 +100,9 @@ function API.User(source, id, ipAddress)
 
     self.saveCharacter = function()
         self.Character:savePosition(self:getSource())
+        self.Character:saveClothes(self:getSource())
+        self.Character:saveProfiles(self:getSource())
+        self.Character:saveWeapons(self:getSource())
     end
 
     self.drawCharacter = function()     
@@ -106,7 +110,8 @@ function API.User(source, id, ipAddress)
             Wait(200)            
             if cAPI.setSkin(self:getSource(), self.Character:getSkin()) then
                 if cAPI.setClothes(self:getSource(), self.Character:getClothes()) then
-                    cAPI.teleportSpawn(self:getSource(), self.Character:getLastPos(self:getSource()))      
+                    cAPI.replaceWeapons(self:getSource(), self.weapons) 
+                    cAPI.teleportSpawn(self:getSource(), self.Character:getLastPos(self:getSource()))     
                     cAPI.startNeeds(self:getSource())
                 end       
             end

@@ -8,5 +8,6 @@ client_scripts {
 
 server_scripts {
 	'@_core/libs/utils.lua',
+	'@_core/config/Items.lua',
 	'server.lua'
 }

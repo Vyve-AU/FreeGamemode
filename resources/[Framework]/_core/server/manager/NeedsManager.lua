@@ -1,6 +1,5 @@
-function API.varyHunger(variation)
-    local _source = source
-    local User = API.getUserFromSource(_source)
+function API.varyHunger(source, variation)
+    local User = API.getUserFromSource(source)
     if User == nil then
         return
     end
@@ -18,7 +17,7 @@ function API.varyHunger(variation)
 
         local overflow = hunger - 100
         if overflow > 0 then
-            cAPI.varyHealth(_source, -overflow * 8)
+            cAPI.varyHealth(source, -overflow * 8)
         end
 
         if hunger < 0 then
@@ -28,11 +27,11 @@ function API.varyHunger(variation)
         end
         Character:setData(Character:getId(), 'charTable', 'hunger', tonumber(math.floor(hunger * 100) / 100))
     end
+    return true
 end
 
-function API.varyThirst(variation)
-    local _source = source
-    local User = API.getUserFromSource(_source)
+function API.varyThirst(source, variation)
+    local User = API.getUserFromSource(source)
 
     if User == nil then
         return
@@ -53,7 +52,7 @@ function API.varyThirst(variation)
 
         local overflow = thirst - 100
         if overflow > 0 then
-            cAPI.varyHealth(_source, -overflow * 8)
+            cAPI.varyHealth(source, -overflow * 8)
         end
 
         if thirst < 0 then
@@ -64,4 +63,5 @@ function API.varyThirst(variation)
 
         Character:setData(Character:getId(), 'charTable', 'thirst', tonumber(math.floor(thirst * 100) / 100))
     end
+    return true
 end

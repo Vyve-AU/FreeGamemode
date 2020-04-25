@@ -34,11 +34,11 @@ Citizen.CreateThread(
                 end
 
                 if vthirst ~= 0 then
-                    API._varyThirst(vthirst / 12.0)
+                    API._varyThirst(GetPlayerServerId(PlayerId()), vthirst / 12.0)
                 end
 
                 if vhunger ~= 0 then
-                    API._varyHunger(vhunger / 12.0)
+                    API._varyHunger(GetPlayerServerId(PlayerId()), vhunger / 12.0)
                 end
             end
         end

@@ -13,24 +13,22 @@ function API.Character(id, charName, level, xp, groups, inventory)
     end
 
     self.addGroup = function(this, group)
-        
         local groupType = Config_Permissions[group].type
         if groupType ~= nil then
             for tempGroup, _ in pairs(self.groups) do
                 local tempGroupType = Config_Permissions[group].type
                 if tempGroupType == groupType then
-                    self.removeGroup(tempGroup)
+                    self:removeGroup(tempGroup)
                     break
                 end
             end
         end
-
-        self:setData(self.id, "groups", group, true)
+        self:setData(self:getId(), "groups", group, true)
         self.groups[group] = true
     end
 
     self.removeGroup = function(this, group)
-        self:remData(self.id, "groups", group)
+        self:remData(self:getId(), "groups", group)
         self.groups[group] = nil
     end
 
@@ -165,72 +163,6 @@ function API.Character(id, charName, level, xp, groups, inventory)
         return false
     end
 
-    self.createHorse = function(this, model, name)
-        local rows = API_Database.query("CKF_/CreateHorse", {charid = self:getId(), model = model, name = name})
-        if #rows > 0 then
-            local id = rows[1].id
-            self.Horse = API.Horse(id, model, name, API.Inventory("horse" .. id, nil, nil))
-            local Inventory = self.Horse:getInventory()
-
-            API_Database.execute("CKF_/Inventory", {id = "horse:" .. id, charid = self:getId(), itemName = 0, itemCount = 0, typeInv = "insert"})
-        end
-
-        return self.Horse
-    end
-
-    self.setHorse = function(this, id)
-        local rows = API_Database.query("CKF_/GetHorse", {id = id})
-        if #rows > 0 then
-            local invRows = API_Database.query("CKF_/Inventory", {id = "horse:" .. id, charid = 0, itemName = 0, itemCount = 0, typeInv = "select"})
-            local Inventory = nil
-            if #invRows > 0 then
-                local items, _ = json.decode(invRows[1].items)
-                Inventory = API.Inventory("horse:" .. id, tonumber(invRows[1].capacity), items)
-            end
-            self.Horse = API.Horse(id, rows[1].model, rows[1].name, Inventory)
-            return self:getHorse()
-        end
-    end
-
-    self.removeHorse = function(this, id)
-        if self.Horse ~= nil then
-            if self.Horse:getId() == id then
-                self.Horse = nil
-            end
-        end
-    end
-
-    self.getHorses = function()
-        local rows = API_Database.query("CKF_/GetHorses", {charid = self.id})
-        if #rows > 0 then
-            return rows
-        end
-    end
-
-    self.getHorse = function()
-        if self.Horse == nil then
-            local horses = self:getHorses()
-
-            if horses ~= nil then
-                local invRows = API_Database.query("CKF_/Inventory", {id = "horse:" .. horses[1].id, charid = 0, itemName = 0, itemCount = 0, typeInv = "select"})
-                local Inventory = nil
-                if #invRows > 0 then
-                    -- Por algum motivo o decode tá retornando 2 valores?
-                    local items, _ = json.decode(invRows[1].items)
-                    Inventory = API.Inventory("horse:" .. horses[1].id, tonumber(invRows[1].capacity), items)
-                end
-
-                self.Horse = API.Horse(tonumber(horses[1].id), horses[1].model, horses[1].name, Inventory)
-
-                return self.Horse
-            else
-                return self:createHorse("A_C_Donkey_01", "Burrinho")
-            end
-        else
-            return self.Horse
-        end
-    end
-
     self.playerDead = function()
         self.Inventory:deleteInventory()
     end
@@ -249,16 +181,18 @@ function API.Character(id, charName, level, xp, groups, inventory)
         return json.decode(self:getData(self.id, "charTable", "position"))
     end
 
-    self.saveClothes = function()
-        --[[ for k,v in pairs(cAPI.getClothes()) do
-            self:setData(self.id, 'clothes', k, v)
-        end ]]
+    self.saveClothes = function(this, source)
+        -- THIS NEED OPTIMIZATION!!!!!!!!!!!!!!!!!!!!
+        self:setData(self:getId(), "saveClothes", 'ALL', cAPI.getClothesCharacter(source))
     end
 
-    self.saveProfiles = function()
-        --[[ for k,v in pairs(cAPI.getProfiles()) do
-            self:setData(self.id, 'charTable', k, v)
-        end ]]
+    self.saveProfiles = function(this, source) 
+        -- THIS NEED OPTIMIZATION!!!!!!!!!!!!!!!!!!!!
+        self:setData(self:getId(), "saveSkin", 'ALL', cAPI.getSkinCharacter(source))
+    end
+
+    self.saveWeapons = function(this, source)
+        self:setWeapons(cAPI.getWeapons(source))
     end
 
     return self

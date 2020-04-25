@@ -63,13 +63,13 @@ function cAPI.SetClothing(drawables, drawTextures)
 	local player = PlayerPedId()
     for i = 1, #cAPI.drawable_names do
         if drawables[0] == nil then
-            if cAPI.drawable_names[i] == "undershirts" and drawables[tostring(i-1)][2] == -1 then
+            if cAPI.drawable_names[i] == "9" and drawables[tostring(i-1)][2] == -1 then
                 SetPedComponentVariation(player, i-1, 15, 0, 2)
             else
                 SetPedComponentVariation(player, i-1, drawables[tostring(i-1)][2], drawTextures[i][2], 2)
             end
         else
-            if cAPI.drawable_names[i] == "undershirts" and drawables[i-1][2] == -1 then
+            if cAPI.drawable_names[i] == "9" and drawables[i-1][2] == -1 then
                 SetPedComponentVariation(player, i-1, 15, 0, 2)
             else
                 SetPedComponentVariation(player, i-1, drawables[i-1][2], drawTextures[i][2], 2)
@@ -81,4 +81,104 @@ end
 function cAPI.SetHairColor(data)
 	local player = PlayerPedId()
 	SetPedHairColor(player, tonumber(data[0]), tonumber(data[1]))
+end
+
+function cAPI.GetDrawables()
+    local player = PlayerPedId()
+    drawables = {}
+    local model = GetEntityModel(PlayerPedId())
+    local mpPed = false
+    if (model == `mp_f_freemode_01` or model == `mp_m_freemode_01`) then
+        mpPed = true
+    end
+    for i = 0, #cAPI.getDrawableNames()-1 do
+        if mpPed and cAPI.getDrawableNames()[i+1] == "9" and GetPedDrawableVariation(player, i) == -1 then
+            SetPedComponentVariation(player, i, 15, 0, 2)
+        end
+        drawables[i] = {cAPI.getDrawableNames()[i+1], GetPedDrawableVariation(player, i)}
+    end
+    return drawables
+end
+
+function cAPI.GetDrawTextures()
+    local player = PlayerPedId()
+    textures = {}
+    for i = 0, #cAPI.getDrawableNames()-1 do
+        table.insert(textures, {cAPI.getDrawableNames()[i+1], GetPedTextureVariation(player, i)})
+    end
+    return textures
+end
+
+function cAPI.GetPedHeadBlendData()
+    local player = PlayerPedId()
+    local blob = string.rep("\0\0\0\0\0\0\0\0", 6 + 3 + 1) -- Generate sufficient struct memory.
+    if not Citizen.InvokeNative(0x2746BD9D88C5C5D0, player, blob, true) then -- Attempt to write into memory blob.
+        return nil
+    end
+
+    return {
+        s1 = string.unpack("<i4", blob, 1),
+        s2 = string.unpack("<i4", blob, 9),
+        s3 = string.unpack("<i4", blob, 17),
+        s4 = string.unpack("<i4", blob, 25),
+        s5 = string.unpack("<i4", blob, 33),
+        s6 = string.unpack("<i4", blob, 41),
+        s7 = string.unpack("<f", blob, 49),
+        s8 = string.unpack("<f", blob, 57),
+        s9 = string.unpack("<f", blob, 65),
+        s10 = string.unpack("b", blob, 73) ~= 0,
+    }
+end
+
+function cAPI.GetHeadOverlayData()
+    local player = PlayerPedId()
+    local headData = {}
+    for i = 1, #cAPI.getHeadOverlays() do
+        local retval, overlayValue, colourType, firstColour, secondColour, overlayOpacity = GetPedHeadOverlayData(player, i-1)
+        if retval then
+            headData[i] = {}
+            headData[i].name = cAPI.getHeadOverlays()[i]
+            headData[i].ov = overlayValue --
+            headData[i].fc = firstColour -- 
+            headData[i].sc = secondColour --
+            headData[i].oo = string.format("%.2f", overlayOpacity) --
+        end
+    end
+    return headData
+end
+
+function cAPI.GetPedHair()
+    local player = PlayerPedId()
+    local hairColor = {}
+    hairColor[1] = GetPedHairColor(player)
+    hairColor[2] = GetPedHairHighlightColor(player)
+    return hairColor
+end
+
+function cAPI.GetHeadStructureData()
+    local player = PlayerPedId()
+    local structure = {}
+    for i = 1, #cAPI.getFaceFeatures() do
+        structure[cAPI.getFaceFeatures()[i]] = GetPedFaceFeature(player, i-1)
+    end
+    return structure
+end
+
+function cAPI.getClothesCharacter()
+    Clothes = {
+        drawables = cAPI.GetDrawables(),
+        drawTextures = cAPI.GetDrawTextures()
+    }
+    return json.encode(Clothes)
+end
+
+function cAPI.getSkinCharacter()
+    sendAll = {
+        model = GetEntityModel(PlayerPedId()),
+        headBlend = cAPI.GetPedHeadBlendData(),
+        overlayHead = cAPI.GetHeadOverlayData(),
+        headStruct = cAPI.GetHeadStructureData(),
+        getHair = cAPI.GetPedHair()
+    }
+    return json.encode(sendAll)
 end
