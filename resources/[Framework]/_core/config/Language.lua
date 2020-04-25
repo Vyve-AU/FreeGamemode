@@ -1,5 +1,5 @@
 -- Language in Game
-GameLanguage = "br" -- CHANGE ONLY IF HAVE THIS LANGUAGE ;D
+GameLanguage = "br" -- CHANGE ONLY IF HAVE THIS LANGUAGE ;D br/es/de/us
 Language = {
     ["br"] = {
         NO_STEAM = "Steam não detectada",
@@ -31,7 +31,7 @@ Language = {
         DONT_PERMITTED = "No estás en la whitelist del servidor. HEX:",
         AUTO_QUEUEWL = "Espere un minuto para ser eliminado de la lista no whitelist."
     }, 
-    ["de"] = { -- translation by @Marvbell110
+    ["de"] = { -- translation by @Naifen-Phoxidas
         NO_STEAM = "Sie haben kein Steam",
         CHECK_WHITELIST = "Inspiziere die Whitelist...",
         CHECK_BANLIST = "Inspiziere die Banlist...",
@@ -43,7 +43,7 @@ Language = {
     }
 }
 
-UsingLanguageUI = "br" -- CHANGE ONLY IF HAVE THIS LANGUAGE ;D
+UsingLanguageUI = "br" -- CHANGE ONLY IF HAVE THIS LANGUAGE ;D br/es/de
 UILanguage = {
     ["br"] = {
         ["_creator"] = {
@@ -293,5 +293,129 @@ UILanguage = {
             DROP = "Tirar"
         }
     },
+    ["de"] = { -- translation by @Naifen-Phoxidas
+        ["_creator"] = {
+            menu1 = {
+                PARENTS = "Eltern",
+                FATHER_FACE = "Vaters Gesicht",
+                FATHER_COLOR = "Vaters Hautfarbe",
+                MOTHER_FACE = "Mutters Gesicht",
+                MOTHER_COLOR = "Mutters Hautfarbe",
+                PREDOMINANT_FACE = "GesichtszÃ¼ge",
+                PREDOMINANT_COLOR = "GesichtszÃ¼ge Farbe",
+                --- OTHER TAB
+                EYES = "Augen",
+                EYES_SIZE = "AugengrÃ¶sse",
+                EYES_COLOR = "Augenfarbe",
+                EYEBROWN = "Augenbrauen",
+                EYEBROWN_SIZE = "Augenbrauendichte",
+                EYEBROWN_COLOR = "Augenbrauenfarbe",
+                EYEBROWN_HEIGHT = "AugenbrauenhÃ¶he",
+                EYEBROWN_WIDTH = "Augenbrauenbreite",
+                --- OTHER TAB
+                NOSE = "Nase",
+                NOSE_HEIGHT = "Nasenbreite",
+                NOSE_WIDTH = "NasenhÃ¶he",
+                NOSE_LENGTH = "NasenlÃ¤nge",
+                NOSE_CAVITY = "Nasenloch",
+                NOSE_TIP = "Nasenspitze",
+                NOSE_CURVATURE = "NasenkrÃ¼mmung",
+                -- OTHER TAB 
+                CHIN = "Kinn",
+                CHIN_LENGTH = "KinnlÃ¤nge",
+                CHIN_POSITION = "Kinnposition",
+                CHIN_WIDTH = "Kinnbreite",
+                CHIN_FORM = "Kinnform",
+                JAW_WIDTH = "Kieferbreite",
+                JAW_HEIGHT = "KieferhÃ¶he",
+                -- OTHER TAB 
+                CHEEK = "Wange",
+                CHEEK_HEIGHT = "WangenhÃ¶he",
+                CHEEK_WIDTH = "Wangenbreite",
+                CHEEK_SIZE = "WangengrÃ¶sse",
+                -- OTHER TAB 
+                MOUTH = "Mund",
+                LIPS = "Lippen",
+                -- OTHER TAB 
+                NECK = "Hals",
+                NECK_SIZE = "HalsgrÃ¶sse",
+            },
+            menu2 = {
+                FACE_MARKS = "Flecken",
+                ASPECTS = "Aspekt",
+                SKIN = "Haut",
+                FRECKLES = "Sommersprossen",
+                -- OTHER TAB 
+                HAIR = "Haare",
+                HAIR_COLOR = "Haarfarbe",
+                HAIR_HIGHLIGHTS = "Haar Highlights",
+                -- OTHER TAB 
+                BEARDS = "Bart",
+                BEARDS_COLOR = "Bartfarbe",
+                -- OTHER TAB
+                MAKEUP = "Schminke",
+                MAKEUP_BLUSH = "ErrÃ¶tungen",
+                MAKEUP_BLUSH_COLOR = "ErrÃ¶tungsfarbe",
+                MAKEUP_LIPSTICK = "Lippenstift",
+                MAKEUP_LIPSTICK_COLOR = "Lippenstiftfarbe",
+                -- OTHER TAB
+                OLD_AGE = "Alter",
+                WRINKLES = "Falten",
+                DEGREE_WRINKLES = "Grad der Falten",
+                -- OTHER TAB
+                TORSO = "Torso",
+                TORSO_FUR = "KÃ¶rperbehaarung",
+                TORSO_FUR_COLOR = "KÃ¶rperbehaarungsfarbe",
+                -- OTHER TAB
+                BODY = "KÃ¶rper",
+                BODY_MARKS = "KÃ¶rperflecken",
+                BODY_MARKS_2 = "KÃ¶rperflecken 2",
+            },
+            menu3 = {
+                NAME = "Name",
+                NAME_SURNAME = "Vor-/Nachname",
+                NAME_VALUE = "Max Mustermann",
+                AGE = "Alter",
+                -- OTHER TAB
+                JACKET = "Jacke",
+                JACKET_COAT = "Pullover",
+                JACKET_TEXTURE = "Textur",
+                -- OTHER TAB
+                SHIRT = "Hemd",
+                T_SHIRT = "T-Shirt",
+                T_SHIRT_TEXTURE = "Textur",
+                -- OTHER TAB
+                TORSO = "Torso",
+                TORSO_TEXTURE = "Textur",
+                -- OTHER TAB
+                LEGS = "Hosen",
+                LEGS_TEXTURE = "Textur",
+                -- OTHER TAB
+                FOOTS = "Schuhe",
+                FOOTS_TEXTURE = "Textur",
+                -- OTHER TAB
+                ACESSORY = "ZubehÃ¶r",
+                ACESSORY_TEXTURE = "Textur",
+            }
+        },
+        ["_inventory"] = {
+            INVENTORY = "Inventar",
+            ALL_ITEMS = "Alles",
+            FOOD = "Essen",
+            DRINKS = "Trinken",
+            WEAPONS = "Waffen",
+            AMMO = "Munition",
+            SHIRTS = "Hemd",
+            UTILS = "Utensilien",
+
+            VEHICLE = "Fahrzeug",
+            IDENTITY = "IdentitÃ¤t",
+
+            QUANTITY = "Menge",
+            USE = "Verwenden",
+            SEND = "Geben",
+            DROP = "Verwerfen"
+        }
+    }
 }
 
