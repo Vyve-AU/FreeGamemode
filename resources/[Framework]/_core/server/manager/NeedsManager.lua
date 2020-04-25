@@ -27,7 +27,6 @@ function API.varyHunger(variation)
             hunger = 100
         end
         Character:setData(Character:getId(), 'charTable', 'hunger', tonumber(math.floor(hunger * 100) / 100))
-        TriggerClientEvent('crz_inventory:updateNeeds', _source, tonumber(math.floor(hunger * 100) / 100), 0)
     end
 end
 
@@ -64,6 +63,5 @@ function API.varyThirst(variation)
         end
 
         Character:setData(Character:getId(), 'charTable', 'thirst', tonumber(math.floor(thirst * 100) / 100))
-        TriggerClientEvent('crz_inventory:updateNeeds', _source, 0, tonumber(math.floor(thirst * 100) / 100))
     end
 end
