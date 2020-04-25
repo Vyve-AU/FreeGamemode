@@ -1,5 +1,5 @@
 -- Language in Game
-GameLanguage = "br"
+GameLanguage = "br" -- CHANGE ONLY IF HAVE THIS LANGUAGE ;D
 Language = {
     ["br"] = {
         NO_STEAM = "Steam não detectada",
@@ -20,10 +20,30 @@ Language = {
         NO_WHITELIST = "tried connect without whitelist",
         DONT_PERMITTED = "Don't have permission to join in this server. HEX:",
         AUTO_QUEUEWL = "Wait a minute to remove from list non-whitelist."
+    },
+    ["es"] = { -- translation by @PokeSer
+        NO_STEAM = "Steam no ha sido iniciado",
+        CHECK_WHITELIST = "Verificando whitelist...",
+        CHECK_BANLIST = "Verificando si tu cuenta está baneada...",
+        JOIN_PERMITTED = "Cargando servidor...",
+        BANNED = "Estás baneado del servidor.",
+        NO_WHITELIST = "intentado conectar sin whitelist",
+        DONT_PERMITTED = "No estás en la whitelist del servidor. HEX:",
+        AUTO_QUEUEWL = "Espere un minuto para ser eliminado de la lista no whitelist."
+    }, 
+    ["de"] = { -- translation by @Marvbell110
+        NO_STEAM = "Sie haben kein Steam",
+        CHECK_WHITELIST = "Inspiziere die Whitelist...",
+        CHECK_BANLIST = "Inspiziere die Banlist...",
+        JOIN_PERMITTED = "Betrete Server...",
+        BANNED = "Ihr Account wurde gesperrt.",
+        NO_WHITELIST = "Versuche beizutreten ohne Whitelist",
+        DONT_PERMITTED = "Sie sind nicht auf der Whitelist. HEX:",
+        AUTO_QUEUEWL = "Bitte warten. Sie werden von der non-whitelist entfernt."
     }
 }
 
-UsingLanguageUI = "br"
+UsingLanguageUI = "br" -- CHANGE ONLY IF HAVE THIS LANGUAGE ;D
 UILanguage = {
     ["br"] = {
         ["_creator"] = {
@@ -148,6 +168,130 @@ UILanguage = {
             SEND = "Enviar",
             DROP = "Dropar"
         }
-    }
+    },
+    ["es"] = { -- translation by @PokeSer
+        ["_creator"] = {
+            menu1 = {
+                PARENTS = "Parientes",
+                FATHER_FACE = "Cara del padre",
+                FATHER_COLOR = "Color de la piel del padre",
+                MOTHER_FACE = "Cara de la madre",
+                MOTHER_COLOR = "Color de la piel de la madre",
+                PREDOMINANT_FACE = "Predominio de cara",
+                PREDOMINANT_COLOR = "Predominio de color",
+                --- OTHER TAB
+                EYES = "Ojos",
+                EYES_SIZE = "Apertura de los ojos",
+                EYES_COLOR = "Color de los ojos",
+                EYEBROWN = "Cejas",
+                EYEBROWN_SIZE = "Tamaño de las cejas",
+                EYEBROWN_COLOR = "Color de las cejas",
+                EYEBROWN_HEIGHT = "Altura de las cejas",
+                EYEBROWN_WIDTH = "Ancho de las cejas",
+                --- OTHER TAB
+                NOSE = "Nariz",
+                NOSE_HEIGHT = "Ancho de la nariz",
+                NOSE_WIDTH = "Altura de la nariz",
+                NOSE_LENGTH = "Longitud de la nariz",
+                NOSE_CAVITY = "Cavidad nasal",
+                NOSE_TIP = "Punta de la nariz",
+                NOSE_CURVATURE = "Curvatura de la nariz",
+                -- OTHER TAB 
+                CHIN = "Barbilla",
+                CHIN_LENGTH = "Longitud de la barbilla",
+                CHIN_POSITION = "Posición de la barbilla",
+                CHIN_WIDTH = "Ancho de la barbilla",
+                CHIN_FORM = "Forma de la barbilla",
+                JAW_WIDTH = "Ancho de la mandíbula",
+                JAW_HEIGHT = "Altura de la mandíbula",
+                -- OTHER TAB 
+                CHEEK = "Mejilla",
+                CHEEK_HEIGHT = "Altura de la mejilla",
+                CHEEK_WIDTH = "Ancho de la mejilla",
+                CHEEK_SIZE = "Tamaño de la mejilla",
+                -- OTHER TAB 
+                MOUTH = "Boca",
+                LIPS = "Labios",
+                -- OTHER TAB 
+                NECK = "Cuello",
+                NECK_SIZE = "Tamaño del cuello",
+            },
+            menu2 = {
+                FACE_MARKS = "Marcas de la cara",
+                ASPECTS = "Aspecto",
+                SKIN = "Piel",
+                FRECKLES = "Pecas",
+                -- OTHER TAB 
+                HAIR = "Pelo",
+                HAIR_COLOR = "Color del pelo",
+                HAIR_HIGHLIGHTS = "Mechas",
+                -- OTHER TAB 
+                BEARDS = "Barba",
+                BEARDS_COLOR = "Color de la barba",
+                -- OTHER TAB
+                MAKEUP = "Maquillaje",
+                MAKEUP_BLUSH = "Rubor del maquillaje",
+                MAKEUP_BLUSH_COLOR = "Color de rubor",
+                MAKEUP_LIPSTICK = "Pintalabios",
+                MAKEUP_LIPSTICK_COLOR = "Color del pintalabios",
+                -- OTHER TAB
+                OLD_AGE = "Vejez",
+                WRINKLES = "Arrugas",
+                DEGREE_WRINKLES = "Grado de arrugas",
+                -- OTHER TAB
+                TORSO = "Torso",
+                TORSO_FUR = "Pelo Corporal",
+                TORSO_FUR_COLOR = "Color de los pelos",
+                -- OTHER TAB
+                BODY = "Cuerpo",
+                BODY_MARKS = "Manchas del cuerpo",
+                BODY_MARKS_2 = "Manchas del cuerpo 2",
+            },
+            menu3 = {
+                NAME = "Nombre",
+                NAME_SURNAME = "Nombre y apellidos",
+                NAME_VALUE = "Claudete Silva",
+                AGE = "Edad",
+                -- OTHER TAB
+                JACKET = "Chaqueta",
+                JACKET_COAT = "Suéter",
+                JACKET_TEXTURE = "Textura",
+                -- OTHER TAB
+                SHIRT = "Camisa",
+                T_SHIRT = "Camiseta",
+                T_SHIRT_TEXTURE = "Textura",
+                -- OTHER TAB
+                TORSO = "Torso",
+                TORSO_TEXTURE = "Textura",
+                -- OTHER TAB
+                LEGS = "Pantalones",
+                LEGS_TEXTURE = "Textura",
+                -- OTHER TAB
+                FOOTS = "Zapatos",
+                FOOTS_TEXTURE = "Textura",
+                -- OTHER TAB
+                ACESSORY = "Accesorios",
+                ACESSORY_TEXTURE = "Textura",
+            }
+        },
+        ["_inventory"] = {
+            INVENTORY = "Inventario",
+            ALL_ITEMS = "Todos",
+            FOOD = "Comidas",
+            DRINKS = "Bebidas",
+            WEAPONS = "Armas",
+            AMMO = "Munición",
+            SHIRTS = "Camisas",
+            UTILS = "Utilidades",
+
+            VEHICLE = "Vehículos",
+            IDENTITY = "Identidad",
+
+            QUANTITY = "Cantidad",
+            USE = "Usar",
+            SEND = "Dar",
+            DROP = "Tirar"
+        }
+    },
 }
 
