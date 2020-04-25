@@ -1,22 +1,7 @@
--- --------------------------------------------------------
--- Servidor:                     127.0.0.1
--- Versão do servidor:           10.4.12-MariaDB - mariadb.org binary distribution
--- OS do Servidor:               Win64
--- HeidiSQL Versão:              10.2.0.5599
--- --------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `ckf` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `ckf`;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
-
--- Copiando estrutura do banco de dados para CKF
-CREATE DATABASE IF NOT EXISTS `CKF` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `CKF`;
-
--- Copiando estrutura para tabela CKF.characters
+-- Copiando estrutura para tabela ckf.characters
 CREATE TABLE IF NOT EXISTS `characters` (
   `charid` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -37,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `characters` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela CKF.chests
+-- Copiando estrutura para tabela ckf.chests
 CREATE TABLE IF NOT EXISTS `chests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `charid` int(11) DEFAULT NULL,
@@ -51,12 +36,12 @@ CREATE TABLE IF NOT EXISTS `chests` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para procedure CKF.getData
+-- Copiando estrutura para procedure ckf.getData
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getData`(
 	IN `typeData` VARCHAR(10),
 	IN `id` INT(8),
-	IN `chave` VARCHAR(50)
+	IN `chave` TEXT
 )
 BEGIN
 	IF (chave = 'all' && typeData = 'clothes') THEN
@@ -81,7 +66,7 @@ BEGIN
 END//
 DELIMITER ;
 
--- Copiando estrutura para procedure CKF.inventories
+-- Copiando estrutura para procedure ckf.inventories
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `inventories`(
 	IN `iid` VARCHAR(20),
@@ -105,7 +90,7 @@ BEGIN
 END//
 DELIMITER ;
 
--- Copiando estrutura para tabela CKF.inventories
+-- Copiando estrutura para tabela ckf.inventories
 CREATE TABLE IF NOT EXISTS `inventories` (
   `id` varchar(100) NOT NULL,
   `charid` int(11) DEFAULT NULL,
@@ -118,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `inventories` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela CKF.posses
+-- Copiando estrutura para tabela ckf.posses
 CREATE TABLE IF NOT EXISTS `posses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `charid` int(11) NOT NULL,
@@ -127,16 +112,18 @@ CREATE TABLE IF NOT EXISTS `posses` (
   PRIMARY KEY (`id`),
   KEY `charid` (`charid`),
   CONSTRAINT `FK_posses_characters` FOREIGN KEY (`charid`) REFERENCES `characters` (`charid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para procedure CKF.remData
+-- Copiando estrutura para procedure ckf.remData
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `remData`(
 	IN `typeData` VARCHAR(20),
-	IN `chave` VARCHAR(50),
+	IN `chave` TEXT,
 	IN `id` INT(8)
+
+
 )
 BEGIN
 	IF (typeData = 'groups') THEN
@@ -151,23 +138,31 @@ BEGIN
 END//
 DELIMITER ;
 
--- Copiando estrutura para procedure CKF.setData
+-- Copiando estrutura para procedure ckf.setData
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `setData`(
 	IN `typeData` VARCHAR(20),
 	IN `chave` VARCHAR(50),
-	IN `valorChave` VARCHAR(50),
+	IN `valorChave` TEXT,
 	IN `id` INT(8)
+
+
 )
 BEGIN
+	-- THIS IS A GROUPS - IF IS A ADMIN, USER, MECHANIC ETC...
 	IF (typeData = 'groups') THEN
 		UPDATE characters SET groups = JSON_SET(groups, CONCAT("$.", chave), valorChave) WHERE charid = id;
-	ELSEIF (typeData = 'clothes') THEN
-		UPDATE characters SET clothes = JSON_SET(clothes, CONCAT("$.", chave), valorChave) WHERE charid = id;
+	-- THIS IS A CHAR TABLE [ POSITION / HUNGER / THIRST / ETC... ]
 	ELSEIF (typeData = 'charTable') THEN
 		UPDATE characters SET charTable = JSON_SET(charTable, CONCAT("$.", chave), valorChave) WHERE charid = id;
+	-- THIS IS A PLAYER SKIN - FACE FEATURES, HEAD BLEND ETC..
 	ELSEIF (typeData = 'skin') THEN
 		UPDATE characters SET skin = JSON_SET(skin, CONCAT("$.", chave), valorChave) WHERE charid = id;
+	-- THIS IS A CLOTHES SITUATION
+	ELSEIF (typeData = 'clothes') THEN
+		UPDATE characters SET clothes = JSON_SET(clothes, CONCAT("$.", chave), valorChave) WHERE charid = id;
+	ELSEIF (chave = 'ALL' and typeData = 'saveClothes') THEN
+		UPDATE characters SET clothes = valorChave WHERE charid = id;
 	END IF;
 END//
 DELIMITER ;
