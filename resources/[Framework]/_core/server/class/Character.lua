@@ -244,12 +244,7 @@ function API.Character(id, charName, level, xp, groups, inventory)
         }
         self:setData(self:getId(), "charTable", "position", json.encode(encoded))
     end
-
-    self.addGroup = function(this, group)
-        self:setData(self.id, "groups", group, true)
-        self.groups[group] = true
-    end
-
+    
     self.getLastPos = function(this)
         return json.decode(self:getData(self.id, "charTable", "position"))
     end

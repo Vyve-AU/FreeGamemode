@@ -1,8 +1,7 @@
 needs = false
-
 function cAPI.startNeeds()
     needs = true
-    TriggerEvent("fc_basicneeds:startUI")
+    --TriggerEvent("fc_basicneeds:startUI") -- this is a start UI
 end
 
 function cAPI.isStartedNeeds()
@@ -35,11 +34,11 @@ Citizen.CreateThread(
                 end
 
                 if vthirst ~= 0 then
-                    API.varyThirst(vthirst / 12.0)
+                    API._varyThirst(vthirst / 12.0)
                 end
 
                 if vhunger ~= 0 then
-                    API.varyHunger(vhunger / 12.0)
+                    API._varyHunger(vhunger / 12.0)
                 end
             end
         end

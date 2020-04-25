@@ -1,8 +1,8 @@
 local Proxy = module('_core', 'libs/Proxy')
 local Tunnel = module('_core', 'libs/Tunnel')
 
-cAPI = Proxy.getInterface('API')
-API = Tunnel.getInterface('API')
+API = Proxy.getInterface("API")
+cAPI = Tunnel.getInterface("API")
 
 local dictionary = "mini@sprunk"
 local boneIndex

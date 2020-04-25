@@ -1,7 +1,7 @@
 local Tunnel = module('_core', 'libs/Tunnel')
 local Proxy = module('_core', 'libs/Proxy')
 
-cAPI = Proxy.getInterface('API')
+cAPI = Proxy.getInterface('cAPI')
 API = Tunnel.getInterface('API')
 
 initialPosition = { x = 152.19 , y = -1001.41 , z = -99.00}

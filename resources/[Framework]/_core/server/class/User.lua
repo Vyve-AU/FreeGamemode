@@ -107,6 +107,7 @@ function API.User(source, id, ipAddress)
             if cAPI.setSkin(self:getSource(), self.Character:getSkin()) then
                 if cAPI.setClothes(self:getSource(), self.Character:getClothes()) then
                     cAPI.teleportSpawn(self:getSource(), self.Character:getLastPos(self:getSource()))      
+                    cAPI.startNeeds(self:getSource())
                 end       
             end
         end

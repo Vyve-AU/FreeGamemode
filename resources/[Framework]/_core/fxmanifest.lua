@@ -2,6 +2,17 @@ fx_version 'adamant'
 game 'gta5'
 rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
 
+files {
+	'libs/utils.lua',
+	'libs/Tunnel.lua',
+	'libs/Proxy.lua',
+	'libs/Tools.lua',
+	'html/*',
+	'html/img/*',
+	'html/fonts/*',
+	"loading/*",
+}
+
 client_scripts {
 	'libs/utils.lua',
 	---------------------
@@ -17,7 +28,7 @@ client_scripts {
 	'client/functions/_Camera.lua',
 	'client/functions/_Character.lua',
 	---------------------
-	--'client/game/_bNeeds.lua',
+	'client/game/_bNeeds.lua',
 	--'client/game/_onDeath.lua',
 	---------------------
 	--'client/mapping/_IPLoader.lua',
@@ -32,11 +43,10 @@ server_scripts {
 	'config/Chests.lua',
 	'config/Permissions.lua',
 	---------------------
-	'server/Database.lua',
 	'server/_Main.lua',
+	'server/Database.lua',
 	'server/Auth.lua',
 	'server/Gui.lua',
-	'server/Basic_needs.lua',
 	-----------------------
 	'server/class/Inventory.lua',
 	'server/class/ItemData.lua',
@@ -49,22 +59,10 @@ server_scripts {
 	'server/manager/ItemDataManager.lua',
 	'server/manager/CharacterManager.lua',
 	'server/manager/PosseManager.lua',
-	'server/manager/ChestManager.lua'
-}
-
-files {
-	'libs/utils.lua',
-	'libs/Tunnel.lua',
-	'libs/Proxy.lua',
-	'libs/Tools.lua',
-	'html/*',
-	'html/img/*',
-	'html/fonts/*',
-	"loading/*",
+	'server/manager/ChestManager.lua',
+	'server/manager/NeedsManager.lua'
 }
 
 loadscreen "loading/index.html"
-
-
 
 ui_page 'html/index.html'

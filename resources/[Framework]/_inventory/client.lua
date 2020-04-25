@@ -1,7 +1,7 @@
 local Tunnel = module('_core', 'libs/Tunnel')
 local Proxy = module('_core', 'libs/Proxy')
 
-cAPI = Proxy.getInterface('API')
+cAPI = Proxy.getInterface('cAPI')
 API = Tunnel.getInterface('API')
 
 Inventory = {}
@@ -19,14 +19,16 @@ Citizen.CreateThread(function()
         if Inventory.Opened then
             DisableControlAction(0, 1, Inventory.Opened)
             DisableControlAction(0, 2, Inventory.Opened)
-            DisableControlAction(0, 142, Inventory.Opened)
-            DisableControlAction(0, 106, Inventory.Opened)
             DisableControlAction(0, 16, Inventory.Opened)
             DisableControlAction(0, 17, Inventory.Opened)
+            DisableControlAction(0, 24, Inventory.Opened) -- CANNOT CLICK HEHEHEE
+            DisableControlAction(0, 257, Inventory.Opened) -- CANNOT CLICK HEHEHEE
+            DisableControlAction(0, 142, Inventory.Opened)
+            DisableControlAction(0, 106, Inventory.Opened)
         end
     end
 end)
--- timer to open this inventory [ 5 seconds ]
+
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1000)
@@ -46,6 +48,7 @@ RegisterNetEvent('_inventory:updateItems')
 AddEventHandler('_inventory:updateItems', function(items)
     Inventory.updateItems(items)
 end)
+
 ---------------------------------------------
 --FUNCTIONS----------------------------------
 ---------------------------------------------
@@ -74,7 +77,7 @@ function Inventory.closeInventory() -- this func only close inventory
     SetNuiFocus(false)
     SetNuiFocusKeepInput(false)
     Inventory.Opened = false
-    Inventory.Delay = 5 
+    Inventory.Delay = 1
 end
 
 function Inventory.isOpened() -- get if inventory is opened :O

@@ -3,11 +3,12 @@ local Tunnel = module("libs/Tunnel")
 
 API = {}
 Proxy.addInterface("API", API)
-Proxy.addInterface("API_DB", API_Database)
+Tunnel.bindInterface("API", API)
 
+Proxy.addInterface("API_DB", API_Database)
+Tunnel.bindInterface("API_DB", API_Database)
 -- cAPI = {}
-cAPI = Tunnel.getInterface("API")
-Tunnel.bindInterface("API", cAPI)
+cAPI = Tunnel.getInterface("cAPI")
 
 API.users = {} -- key: user_id | value: User.class
 API.sources = {} -- key: source | value: user_id

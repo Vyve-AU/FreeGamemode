@@ -2,10 +2,10 @@ local Tunnel = module("_core", "libs/Tunnel")
 local Proxy = module("_core", "libs/Proxy")
 
 cAPI = {}
-Tunnel.bindInterface("API", cAPI)
-Proxy.addInterface("API", cAPI)
+Tunnel.bindInterface("cAPI", cAPI)
+Proxy.addInterface("cAPI", cAPI)
 
-API = Proxy.getInterface("API")
+API = Tunnel.getInterface("API")
 
 cAPI.playerSpawned = false
 

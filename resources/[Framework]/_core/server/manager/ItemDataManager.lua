@@ -32,9 +32,7 @@ function API.useItem(source, id, amount)
         return true
     elseif ItemData:getType() == "ammo" then
         local uWeapons = cAPI.getWeapons(source)
-        local formattedId = ItemData:getId():gsub('ammo_', ''):upper()
-        print(formattedId)
-
+        local formattedId = ItemData:getId():gsub('ammo_', 'WEAPON_'):upper()
         if uWeapons[formattedId] == nil then
             User:notify('Nenhuma arma equipada suporta este tipo de munição!')
             return false

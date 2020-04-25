@@ -1,7 +1,7 @@
 local Tunnel = module('_core', 'libs/Tunnel')
 local Proxy = module('_core', 'libs/Proxy')
 
-cAPI = Proxy.getInterface('API')
+cAPI = Proxy.getInterface('cAPI')
 API = Tunnel.getInterface('API')
 
 menu1 = {
