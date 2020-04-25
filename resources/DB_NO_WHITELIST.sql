@@ -1,38 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `ckf` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `ckf`;
-
--- Copiando estrutura para tabela ckf.characters
-CREATE TABLE IF NOT EXISTS `characters` (
-  `charid` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `characterName` varchar(50) NOT NULL,
-  `age` int(11) unsigned DEFAULT 0,
-  `level` int(11) DEFAULT 1,
-  `xp` int(11) DEFAULT 0,
-  `groups` text NOT NULL DEFAULT '{}',
-  `charTable` text NOT NULL DEFAULT '{}',
-  `skin` text NOT NULL DEFAULT '{}',
-  `clothes` text DEFAULT '{}',
-  `weapons` text NOT NULL DEFAULT '{}',
-  `is_dead` int(11) DEFAULT 0,
-  PRIMARY KEY (`charid`),
-  KEY `FK_characters_users` (`user_id`),
-  CONSTRAINT `FK_characters_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
--- Exportação de dados foi desmarcado.
-
--- Copiando estrutura para tabela ckf.chests
-CREATE TABLE IF NOT EXISTS `chests` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `charid` int(11) DEFAULT NULL,
-  `position` text NOT NULL DEFAULT '{}[]',
-  `type` int(11) NOT NULL,
-  `capacity` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_chests_characters` (`charid`),
-  CONSTRAINT `FK_chests_characters` FOREIGN KEY (`charid`) REFERENCES `characters` (`charid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+CREATE DATABASE IF NOT EXISTS `ckf2` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `ckf2`;
 
 -- Exportação de dados foi desmarcado.
 
@@ -89,32 +56,6 @@ BEGIN
     END IF;
 END//
 DELIMITER ;
-
--- Copiando estrutura para tabela ckf.inventories
-CREATE TABLE IF NOT EXISTS `inventories` (
-  `id` varchar(100) NOT NULL,
-  `charid` int(11) DEFAULT NULL,
-  `capacity` int(11) DEFAULT NULL,
-  `items` text NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `FK_inventoriers_characters` (`charid`),
-  CONSTRAINT `FK_inventories_characters` FOREIGN KEY (`charid`) REFERENCES `characters` (`charid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Exportação de dados foi desmarcado.
-
--- Copiando estrutura para tabela ckf.posses
-CREATE TABLE IF NOT EXISTS `posses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `charid` int(11) NOT NULL,
-  `members` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `charid` (`charid`),
-  CONSTRAINT `FK_posses_characters` FOREIGN KEY (`charid`) REFERENCES `characters` (`charid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Exportação de dados foi desmarcado.
 
 -- Copiando estrutura para procedure ckf.remData
 DELIMITER //
@@ -176,4 +117,64 @@ CREATE TABLE `users` (
 	PRIMARY KEY (`user_id`),
 	INDEX `identifier` (`identifier`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela ckf.characters
+CREATE TABLE IF NOT EXISTS `characters` (
+  `charid` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `characterName` varchar(50) NOT NULL,
+  `age` int(11) unsigned DEFAULT 0,
+  `level` int(11) DEFAULT 1,
+  `xp` int(11) DEFAULT 0,
+  `groups` text NOT NULL DEFAULT '{}',
+  `charTable` text NOT NULL DEFAULT '{}',
+  `skin` text NOT NULL DEFAULT '{}',
+  `clothes` text DEFAULT '{}',
+  `weapons` text NOT NULL DEFAULT '{}',
+  `is_dead` int(11) DEFAULT 0,
+  PRIMARY KEY (`charid`),
+  KEY `FK_characters_users` (`user_id`),
+  CONSTRAINT `FK_characters_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela ckf.chests
+CREATE TABLE IF NOT EXISTS `chests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `charid` int(11) DEFAULT NULL,
+  `position` text NOT NULL DEFAULT '{}[]',
+  `type` int(11) NOT NULL,
+  `capacity` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_chests_characters` (`charid`),
+  CONSTRAINT `FK_chests_characters` FOREIGN KEY (`charid`) REFERENCES `characters` (`charid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+-- Copiando estrutura para tabela ckf.inventories
+CREATE TABLE IF NOT EXISTS `inventories` (
+  `id` varchar(100) NOT NULL,
+  `charid` int(11) DEFAULT NULL,
+  `capacity` int(11) DEFAULT NULL,
+  `items` text NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `FK_inventoriers_characters` (`charid`),
+  CONSTRAINT `FK_inventories_characters` FOREIGN KEY (`charid`) REFERENCES `characters` (`charid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela ckf.posses
+CREATE TABLE IF NOT EXISTS `posses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `charid` int(11) NOT NULL,
+  `members` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `charid` (`charid`),
+  CONSTRAINT `FK_posses_characters` FOREIGN KEY (`charid`) REFERENCES `characters` (`charid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- Exportação de dados foi desmarcado.
