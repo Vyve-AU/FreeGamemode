@@ -609,7 +609,7 @@ UILanguage = {
                 FATHER_COLOR = "Father's skin colour",
                 MOTHER_FACE = "Mother's face",
                 MOTHER_COLOR = "Mother's skin colour",
-                PREDOMINANT_FACE = "Face dominance",
+                PREDOMINANT_FACE = "Facial dominance",
                 PREDOMINANT_COLOR = "Color dominance",
                 --- OTHER TAB
                 EYES = "Eyes",
