@@ -103,7 +103,7 @@ Language = {
     }
 }
 
-UsingLanguageUI = "br" -- CHANGE ONLY IF HAVE THIS LANGUAGE ;D br/es/de
+UsingLanguageUI = "br" -- CHANGE ONLY IF HAVE THIS LANGUAGE ;D br/es/de/us
 UILanguage = {
     ["br"] = {
         ["_creator"] = {
@@ -599,6 +599,130 @@ UILanguage = {
             USE = "Kullan",
             SEND = "Ver",
             DROP = "At"
+        }
+    },
+    ["us"] = { 
+        ["_creator"] = {
+            menu1 = {
+                PARENTS = "Family members",
+                FATHER_FACE = "Father's face",
+                FATHER_COLOR = "Father's skin colour",
+                MOTHER_FACE = "Mother's face",
+                MOTHER_COLOR = "Mother's skin colour",
+                PREDOMINANT_FACE = "Face dominance",
+                PREDOMINANT_COLOR = "Color dominance",
+                --- OTHER TAB
+                EYES = "Eyes",
+                EYES_SIZE = "Eye size",
+                EYES_COLOR = "Eye colour",
+                EYEBROWN = "Eyebrows",
+                EYEBROWN_SIZE = "Eyebrow size",
+                EYEBROWN_COLOR = "Eyebrow colour",
+                EYEBROWN_HEIGHT = "Eyebrow height",
+                EYEBROWN_WIDTH = "Eyebrow width",
+                --- OTHER TAB
+                NOSE = "Nose",
+                NOSE_HEIGHT = "Nose width",
+                NOSE_WIDTH = "Nose height",
+                NOSE_LENGTH = "Nose length",
+                NOSE_CAVITY = "Nasal cavity",
+                NOSE_TIP = "Nasal pitch",
+                NOSE_CURVATURE = "Nasal curvature",
+                -- OTHER TAB 
+                CHIN = "Chin",
+                CHIN_LENGTH = "Chin length",
+                CHIN_POSITION = "Chin position",
+                CHIN_WIDTH = "Chin width",
+                CHIN_FORM = "Chin shape",
+                JAW_WIDTH = "Jaw width",
+                JAW_HEIGHT = "Jaw height",
+                -- OTHER TAB 
+                CHEEK = "Cheek",
+                CHEEK_HEIGHT = "Cheek height",
+                CHEEK_WIDTH = "Cheek width",
+                CHEEK_SIZE = "Cheek size",
+                -- OTHER TAB 
+                MOUTH = "Mouth",
+                LIPS = "Lips",
+                -- OTHER TAB
+                NECK = "Neck",
+                NECK_SIZE = "Neck size",
+            },
+            menu2 = {
+                FACE_MARKS = "Face makrs",
+                ASPECTS = "Aspect",
+                SKIN = "Skin",
+                FRECKLES = "Freckles",
+                -- OTHER TAB 
+                HAIR = "Hair",
+                HAIR_COLOR = "Hair colour",
+                HAIR_HIGHLIGHTS = "Hair highlights",
+                -- OTHER TAB 
+                BEARDS = "Beard",
+                BEARDS_COLOR = "Beard colour",   
+                -- OTHER TAB
+                MAKEUP = "Makeup",
+                MAKEUP_BLUSH = "Blush",
+                MAKEUP_BLUSH_COLOR = "Blush colour",
+                MAKEUP_LIPSTICK = "Lipstick",
+                MAKEUP_LIPSTICK_COLOR = "Lipstick colour",
+                -- OTHER TAB
+                OLD_AGE = "Aging",
+                WRINKLES = "Wrinkles",
+                DEGREE_WRINKLES = "Degree of wrinkles",
+                -- OTHER TAB
+                TORSO = "Torso",
+                TORSO_FUR = "Chest hair",
+                TORSO_FUR_COLOR = "Chest hair colour",
+                -- OTHER TAB
+                BODY = "Body marks",
+                BODY_MARKS = "Body freckles",
+                BODY_MARKS_2 = "Body freckles (2)",
+            },
+            menu3 = {
+                NAME = "Name",
+                NAME_SURNAME = "Name and surname",
+                NAME_VALUE = "John Smith",
+                AGE = "Age",
+                -- OTHER TAB
+                JACKET = "Jacket",
+                JACKET_COAT = "Sweater",
+                JACKET_TEXTURE = "Texture",
+                -- OTHER TAB
+                SHIRT = "Shirt",
+                T_SHIRT = "Shirt",
+                T_SHIRT_TEXTURE = "Texture",
+                -- OTHER TAB
+                TORSO = "Torso",
+                TORSO_TEXTURE = "Texture",
+                -- OTHER TAB
+                LEGS = "Pants",
+                LEGS_TEXTURE = "Texture",
+                -- OTHER TAB
+                FOOTS = "Shoes",
+                FOOTS_TEXTURE = "Texture",
+                -- OTHER TAB
+                ACESSORY = "Accessories",
+                ACESSORY_TEXTURE = "Texture",
+            }
+        },
+        ["_inventory"] = {
+            INVENTORY = "Inventory",
+            ALL_ITEMS = "All",
+            FOOD = "Meals",
+            DRINKS = "Drinks",
+
+            WEAPONS = "Weapons",
+            AMMO = "Ammunition",
+            SHIRTS = "Shirts",
+            UTILS = "Utilities",
+
+            VEHICLE = "Vehicles",
+            IDENTITY = "Identity",      
+            QUANTITY = "Quantity",
+            USE = "Use",
+            SEND = "Give",
+            DROP = "Throw"
         }
     }
 }
