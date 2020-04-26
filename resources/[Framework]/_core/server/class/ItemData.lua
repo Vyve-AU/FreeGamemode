@@ -1,4 +1,4 @@
-function API.ItemData(id, name, weight, subTitle, type, hungerVar, thirstVar)
+function API.ItemData(id, name, weight, subTitle, type, hungerVar, thirstVar, droppable)
     local self = {}
 
     self.id = id
@@ -8,6 +8,7 @@ function API.ItemData(id, name, weight, subTitle, type, hungerVar, thirstVar)
     self.subTitle = subTitle or "NULL"
     self.hungerVar = hungerVar or 0
     self.thirstVar = thirstVar or 0
+    self.droppable = droppable 
     -- self.worldModel = 'default_prop'
 
     self.getId = function()
@@ -16,6 +17,10 @@ function API.ItemData(id, name, weight, subTitle, type, hungerVar, thirstVar)
 
     self.getName = function(this)
         return self.name
+    end
+
+    self.isDroppable = function(this)
+        return self.droppable
     end
 
     self.getSubTitle = function(this)

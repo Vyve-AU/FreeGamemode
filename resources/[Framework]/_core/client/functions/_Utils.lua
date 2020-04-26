@@ -356,16 +356,14 @@ function cAPI.isPlayingAnimation(dict, anim)
 	return IsEntityPlayingAnim(ped, dict, anim, 3)
 end
 
+function cAPI.displayHelpText(str)
+	SetTextComponentFormat("STRING")
+	AddTextComponentString(str)
+	DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+end
+
+
 function cAPI.DrawText(str, x, y, w, h, enableShadow, r, g, b, a, centre, font)
-	local str = CreateVarString(10, "LITERAL_STRING", str)
-	SetTextScale(w, h)
-	SetTextColor(math.floor(r), math.floor(g), math.floor(b), math.floor(a))
-	SetTextCentre(centre)
-	if enableShadow then
-		SetTextDropshadow(1, 0, 0, 0, 255)
-	end
-	Citizen.InvokeNative(0xADA9255D, font)
-	DisplayText(str, x, y)
 end
 
 function cAPI.StartFade(timer)

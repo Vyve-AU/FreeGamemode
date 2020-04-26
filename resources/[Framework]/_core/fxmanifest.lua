@@ -17,6 +17,7 @@ client_scripts {
 	'client/functions/_Utils.lua',
 	'client/functions/_Camera.lua',
 	'client/functions/_Character.lua',
+	'client/functions/_Inventory.lua',
 	---------------------
 	'client/game/_bNeeds.lua',
 	--'client/game/_onDeath.lua',
@@ -32,6 +33,7 @@ server_scripts {
 	'config/XPSystem.lua',
 	'config/Chests.lua',
 	'config/Permissions.lua',
+	'config/CKF.lua',
 	---------------------
 	'server/_Main.lua',
 	'server/Database.lua',

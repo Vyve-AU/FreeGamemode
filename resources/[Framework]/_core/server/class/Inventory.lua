@@ -62,8 +62,9 @@ function API.Inventory(id, capacity, items)
             local User = API.getUserFromSource(viewerSource)
 
             if asPrimary then
+                -- i need change this to prevent inject :D
                 TriggerClientEvent("_inventory:updateItems", viewerSource, self:updateItem())
-                User:notify("Inventário Principal: + x" .. amount .. " " .. ItemData:getName())
+                --User:notify("Inventário Principal: + x" .. amount .. " " .. ItemData:getName())
             else
                 --TriggerClientEvent(
                 --    "CKF:INVENTORY:SecondarySyncItemAmount",
@@ -72,7 +73,7 @@ function API.Inventory(id, capacity, items)
                 --    _temp,
                 --    ItemData:getName()
                 --)
-                User:notify("Inventário Secundário: + x" .. amount .. " " .. ItemData:getName())
+                --User:notify("Inventário Secundário: + x" .. amount .. " " .. ItemData:getName())
             end
         end
 
@@ -130,7 +131,7 @@ function API.Inventory(id, capacity, items)
                     --    ItemData:getName()
                     --)
                     TriggerClientEvent("_inventory:updateItems", viewerSource, self:updateItem())
-                    User:notify("Inventário Principal: - x" .. amount .. " " .. ItemData:getName())
+                    --User:notify("Inventário Principal: - x" .. amount .. " " .. ItemData:getName())
                 else
                     --TriggerClientEvent(
                     --    "CKF:INVENTORY:SecondarySyncItemAmount",
@@ -139,7 +140,7 @@ function API.Inventory(id, capacity, items)
                     --    _temp,
                     --    ItemData:getName()
                     --)
-                    User:notify("Inventário Secundário: - x" .. amount .. " " .. ItemData:getName())
+                    --User:notify("Inventário Secundário: - x" .. amount .. " " .. ItemData:getName())
                 end
             end
 
@@ -218,6 +219,20 @@ function API.Inventory(id, capacity, items)
         if API.useItem(source, id, parseInt(amount)) then
             self:removeItem(id, parseInt(amount))
         end
+    end
+
+    self.dropItem = function(this, source, id, amount)
+        if not self:hasItem(id) then return end
+        if self:getItemAmount(id) < parseInt(amount) then  return end
+        if API.dropItem(source, id, parseInt(amount)) then
+            self:removeItem(id, parseInt(amount))
+        end
+    end
+
+    self.sendItem = function(this, source, id, amount)
+        if not self:hasItem(id) then return end
+        if self:getItemAmount(id) < parseInt(amount) then  return end
+        API.sendItem(source, id, parseInt(amount))
     end
 
     return self

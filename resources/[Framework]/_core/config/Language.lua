@@ -9,7 +9,17 @@ Language = {
         BANNED = "Você está banido do servidor.",
         NO_WHITELIST = "tentou conectar sem whitelist",
         DONT_PERMITTED = "Você não está permitido para entrar no servidor. HEX:",
-        AUTO_QUEUEWL = "Aguarde um minuto para ser removido da lista de não-whitelist."
+        AUTO_QUEUEWL = "Aguarde um minuto para ser removido da lista de não-whitelist.",
+        --
+        WEAPON_EQUIPPED = 'Arma já equipada.',
+        NO_WEAPON_TYPE = 'Nenhuma arma equipada suporta este tipo de munição!',
+        --
+        RECEIVED_ITEM = "Recebido",
+        FROM = "de",
+        TO = "para",
+        SENDED_ITEM = "Enviado",
+        CANNOT_DROP_ITEM = "Esse item não pode ser dropável.",
+        NO_NEAREST_PLAYER = "Nenhum jogador próximo."
     },
     ["us"] = {
         NO_STEAM = "No steam",
@@ -19,7 +29,17 @@ Language = {
         BANNED = "You are banned.",
         NO_WHITELIST = "tried connect without whitelist",
         DONT_PERMITTED = "Don't have permission to join in this server. HEX:",
-        AUTO_QUEUEWL = "Wait a minute to remove from list non-whitelist."
+        AUTO_QUEUEWL = "Wait a minute to remove from list non-whitelist.",
+        --
+        WEAPON_EQUIPPED = ' Weapon already equipped.',
+        NO_WEAPON_TYPE = 'No equipped weapon supports this type of ammunition!',
+        --
+        RECEIVED_ITEM = "Received",
+        FROM = "from",
+        TO = "to",
+        SENDED_ITEM = "Sended",
+        CANNOT_DROP_ITEM = "This item cannot be dropable.",
+        NO_NEAREST_PLAYER = "No players nearby."
     },
     ["es"] = { -- translation by @PokeSer
         NO_STEAM = "Steam no ha sido iniciado",
@@ -29,7 +49,17 @@ Language = {
         BANNED = "Estás baneado del servidor.",
         NO_WHITELIST = "intentado conectar sin whitelist",
         DONT_PERMITTED = "No estás en la whitelist del servidor. HEX:",
-        AUTO_QUEUEWL = "Espere un minuto para ser eliminado de la lista no whitelist."
+        AUTO_QUEUEWL = "Espere un minuto para ser eliminado de la lista no whitelist.",
+        --
+        WEAPON_EQUIPPED = "Arma equipada",
+        NO_WEAPON_TYPE = "El arma equipada no soporta este tipo de munición",
+        --
+        RECEIVED_ITEM = "Has recibido",
+        FROM = "de",
+        TO = "a",
+        SENDED_ITEM = "Has dado",
+        CANNOT_DROP_ITEM = "Ese objeto no se puede tirar",
+        NO_NEAREST_PLAYER = "No hay jugadores cerca"
     }, 
     ["de"] = { -- translation by @Naifen-Phoxidas
         NO_STEAM = "Sie haben kein Steam",
@@ -39,7 +69,17 @@ Language = {
         BANNED = "Ihr Account wurde gesperrt.",
         NO_WHITELIST = "Versuche beizutreten ohne Whitelist",
         DONT_PERMITTED = "Sie sind nicht auf der Whitelist. HEX:",
-        AUTO_QUEUEWL = "Bitte warten. Sie werden von der non-whitelist entfernt."
+        AUTO_QUEUEWL = "Bitte warten. Sie werden von der non-whitelist entfernt.",
+        --
+        WEAPON_EQUIPPED = 'Arma já equipada.',
+        NO_WEAPON_TYPE = 'Nenhuma arma equipada suporta este tipo de munição!',
+        --
+        RECEIVED_ITEM = "Recebido",
+        FROM = "de",
+        TO = "para",
+        SENDED_ITEM = "Enviado",
+        CANNOT_DROP_ITEM = "Esse item não pode ser dropável.",
+        NO_NEAREST_PLAYER = "Nenhum jogador próximo."
     },
     ["tr"] = { -- translation by @sequester0
         NO_STEAM = "Geçersiz steam",
@@ -49,7 +89,17 @@ Language = {
         BANNED = "Hesabınız sunucudan yasaklı.",
         NO_WHITELIST = "Whitelist'iniz yokken bağlanmaya çalıştınız",
         DONT_PERMITTED = "Sunucuya girmek için Whitelist'iniz yok. HEX:",
-        AUTO_QUEUEWL = "Beyaz liste dışı listeden kaldırmak için bir dakika bekleyin."
+        AUTO_QUEUEWL = "Beyaz liste dışı listeden kaldırmak için bir dakika bekleyin.",
+        --
+        WEAPON_EQUIPPED = 'Arma já equipada.',
+        NO_WEAPON_TYPE = 'Nenhuma arma equipada suporta este tipo de munição!',
+        --
+        RECEIVED_ITEM = "Recebido",
+        FROM = "de",
+        TO = "para",
+        SENDED_ITEM = "Enviado",
+        CANNOT_DROP_ITEM = "Esse item não pode ser dropável.",
+        NO_NEAREST_PLAYER = "Nenhum jogador próximo."
     }
 }
 
