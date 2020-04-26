@@ -649,7 +649,7 @@ UILanguage = {
                 NECK_SIZE = "Neck size",
             },
             menu2 = {
-                FACE_MARKS = "Face makrs",
+                FACE_MARKS = "Face marks",
                 ASPECTS = "Aspect",
                 SKIN = "Skin",
                 FRECKLES = "Freckles",
