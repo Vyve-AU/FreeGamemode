@@ -40,6 +40,16 @@ Language = {
         NO_WHITELIST = "Versuche beizutreten ohne Whitelist",
         DONT_PERMITTED = "Sie sind nicht auf der Whitelist. HEX:",
         AUTO_QUEUEWL = "Bitte warten. Sie werden von der non-whitelist entfernt."
+    },
+    ["tr"] = { -- translation by @sequester0
+        NO_STEAM = "Geçersiz steam",
+        CHECK_WHITELIST = "Whitelist durumunuz inceleniyor...",
+        CHECK_BANLIST = "Hesabınızın ban durumu inceleniyor...",
+        JOIN_PERMITTED = "Sunucu yükleniyor...",
+        BANNED = "Hesabınız sunucudan yasaklı.",
+        NO_WHITELIST = "Whitelist'iniz yokken bağlanmaya çalıştınız",
+        DONT_PERMITTED = "Sunucuya girmek için Whitelist'iniz yok. HEX:",
+        AUTO_QUEUEWL = "Beyaz liste dışı listeden kaldırmak için bir dakika bekleyin."
     }
 }
 
@@ -415,6 +425,130 @@ UILanguage = {
             USE = "Verwenden",
             SEND = "Geben",
             DROP = "Verwerfen"
+        }
+    },
+    ["tr"] = { -- translation by @sequester0
+        ["_creator"] = {
+            menu1 = {
+                PARENTS = "Aileler",
+                FATHER_FACE = "Babanın Yüzü",
+                FATHER_COLOR = "Babanın Ten Rengi",
+                MOTHER_FACE = "Annenin Yüzü",
+                MOTHER_COLOR = "Annenin Ten Rengi",
+                PREDOMINANT_FACE = "Yüzün Detayları",
+                PREDOMINANT_COLOR = "Renk Baskınlığı",
+                --- OTHER TAB
+                EYES = "Gözler",
+                EYES_SIZE = "Göz Boyutu",
+                EYES_COLOR = "Göz Rengi",
+                EYEBROWN = "Kaşlar",
+                EYEBROWN_SIZE = "Kaş Yoğunluğu",
+                EYEBROWN_COLOR = "Kaş Rengi",
+                EYEBROWN_HEIGHT = "Kaş Yüksekliği",
+                EYEBROWN_WIDTH = "Kaş Genişliği",
+                --- OTHER TAB
+                NOSE = "Burun",
+                NOSE_HEIGHT = "Burun Genişliği",
+                NOSE_WIDTH = "Burun Yüksekliği",
+                NOSE_LENGTH = "Burun Uzunluğu",
+                NOSE_CAVITY = "Burun Boşluğu",
+                NOSE_TIP = "Burun Ucu",
+                NOSE_CURVATURE = "Burun Eğriliği",
+                -- OTHER TAB 
+                CHIN = "Çene",
+                CHIN_LENGTH = "Çene Uzunluğu",
+                CHIN_POSITION = "Çene Pozisyonu",
+                CHIN_WIDTH = "Çene Genişliği",
+                CHIN_FORM = "Çene Şekli",
+                JAW_WIDTH = "Çene2 Uzunluğu",
+                JAW_HEIGHT = "Çene2 Genişliği",
+                -- OTHER TAB 
+                CHEEK = "Yanak",
+                CHEEK_HEIGHT = "Yanak Yüksekliği",
+                CHEEK_WIDTH = "Yanak Genişliği",
+                CHEEK_SIZE = "Yanak Yoğunluğu",
+                -- OTHER TAB 
+                MOUTH = "Ağız",
+                LIPS = "Dudak",
+                -- OTHER TAB 
+                NECK = "Boyun",
+                NECK_SIZE = "Boyun Kalınlığı",
+            },
+            menu2 = {
+                FACE_MARKS = "Noktalar",
+                ASPECTS = "Görünüş",
+                SKIN = "Cilt",
+                FRECKLES = "Çil",
+                -- OTHER TAB 
+                HAIR = "Saç",
+                HAIR_COLOR = "Saç Rengi",
+                HAIR_HIGHLIGHTS = "Saç Vurgusu",
+                -- OTHER TAB 
+                BEARDS = "Sakal",
+                BEARDS_COLOR = "Sakal Rengi",
+                -- OTHER TAB
+                MAKEUP = "Makyaj",
+                MAKEUP_BLUSH = "Yüz Kızarması",
+                MAKEUP_BLUSH_COLOR = "Yüz Kızarması Rengi",
+                MAKEUP_LIPSTICK = "Ruj",
+                MAKEUP_LIPSTICK_COLOR = "Ruj Rengi",
+                -- OTHER TAB
+                OLD_AGE = "Yaşlılık",
+                WRINKLES = "Kırışıklıklar",
+                DEGREE_WRINKLES = "Kırışıklık Derecesi",
+                -- OTHER TAB
+                TORSO = "Gövde",
+                TORSO_FUR = "Göğüs Kılı",
+                TORSO_FUR_COLOR = "Göğüs Kıl Rengi",
+                -- OTHER TAB
+                BODY = "Vücut",
+                BODY_MARKS = "Vücut Benekleri",
+                BODY_MARKS_2 = "Vücut Benekleri 2",
+            },
+            menu3 = {
+                NAME = "İsim",
+                NAME_SURNAME = "Soyisim",
+                NAME_VALUE = "Baris Gundogan",
+                AGE = "Yaş",
+                -- OTHER TAB
+                JACKET = "Ceket",
+                JACKET_COAT = "Kazak",
+                JACKET_TEXTURE = "Doku",
+                -- OTHER TAB
+                SHIRT = "Gömlek",
+                T_SHIRT = "Tişört",
+                T_SHIRT_TEXTURE = "Tişört Dokusu",
+                -- OTHER TAB
+                TORSO = "Gövde",
+                TORSO_TEXTURE = "Gövde Dokusu",
+                -- OTHER TAB
+                LEGS = "Pantolon",
+                LEGS_TEXTURE = "Pantolon Dokusu",
+                -- OTHER TAB
+                FOOTS = "Ayakkabı",
+                FOOTS_TEXTURE = "Ayakkabı Dokusu",
+                -- OTHER TAB
+                ACESSORY = "Aksesuar",
+                ACESSORY_TEXTURE = "Doku",
+            }
+        },
+        ["_inventory"] = {
+            INVENTORY = "Envanter",
+            ALL_ITEMS = "Tüm İtemler",
+            FOOD = "Yemekler",
+            DRINKS = "İçecekler",
+            WEAPONS = "Silahlar",
+            AMMO = "Mermi",
+            SHIRTS = "Kıyafet",
+            UTILS = "Eşya",
+
+            VEHICLE = "Araç",
+            IDENTITY = "Kimlik",
+
+            QUANTITY = "Çok",
+            USE = "Kullan",
+            SEND = "Ver",
+            DROP = "At"
         }
     }
 }
